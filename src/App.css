@@ -1,0 +1,22 @@
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #0F041D 
+}
+.container {
+  padding: 50px 5vw;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  column-gap: 5vw;
+}
+.banner{
+  background-color: #290A50   ;
+  padding: 10px 0;
+}
+.banner h1{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: black;
+};

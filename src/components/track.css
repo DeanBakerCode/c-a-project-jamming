@@ -1,0 +1,33 @@
+.track-list {
+  /* border: 1px solid purple; */
+  align-items: center;
+  padding: 4px 8px;
+}
+.track-list ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.track{
+  display: flex;
+  align-items: center;
+}
+.track img {
+  height: 30px;
+  width: 30px;
+  border: 1px solid green;
+  border-radius: 30px;
+  margin-right: 10px;
+}
+.track p {
+  margin: 0;
+  padding: 0;
+}
+.track .artist {
+  font-size: 12px ;
+  font-weight: regular;
+  color: gray;
+}
+.add-remove{
+  margin-left: auto;
+}

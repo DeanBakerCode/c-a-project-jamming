@@ -1,0 +1,24 @@
+.playlist{
+    min-width: 25vw;
+    background-color: black;
+}
+.playlist-name-box {
+  padding: 4px;
+  border: 1px solid lime;
+}
+.playlist input{
+    border: none;
+    background-color: transparent;
+    outline: none;
+    padding: 4px;
+    font-size: 18px;
+    color: white;
+}
+
+.playlist-items ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  gap: 10px;
+}
