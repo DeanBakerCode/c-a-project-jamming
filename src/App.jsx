@@ -1,94 +1,116 @@
-import React, { useState } from "react";
-import Search from "./components/Search.jsx";
-import Playlist from "./components/Playlist";
-import "./App.css";
+import React, { useEffect, useState } from 'react';
+import Header from './components/Header.jsx';
+import Search from './components/Search.jsx';
+import Playlist from './components/Playlist';
+import './App.css';
 // auth module
-import {authorize} from "./module.js";
+import spotify from './utility/SpotifyAPI.js';
 
 function App() {
-  // sample data
-  const data = [
-    { title: "Phat Butt", album: "Y2K!", artist: "Ice Spice", uri: "1" },
-    { title: "SICKO MODE", album: "ASTROWORLD", artist: "Travis Scott", uri: "2" },
-  ];
-  const [tracks, setTracks] = useState(data)
-// handle auth
-  const [token, setToken] = useState("");
-const handleAuth = () => {
-  if(!token){
-    setToken(authorize);
-  }
-}
+	// const sampleData = [{ id: '1', name: 'Phat Butt', album: 'Y2K!', artist: 'Ice Spice', uri: '' }];
 
-  // search
-  const [search, setSearch] = useState();
-  const handleSearch = ({ target }) => {
-    setSearch(() => target.value);
-  };
-  const submitSearch = () => {
-    console.log(search)
-    // search for tracks
-    fetch(`https://api.spotify.com/v1/search?q=${search}&type=track`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    // save responce to tracks
-    setTracks(data);
+	// tracks
 
-  };
+	// search state and handlers
+	const [search, setSearch] = useState();
+	const handleSearch = ({ target }) => {
+		setSearch(() => target.value);
+	};
 
+	// playlist Name
+	const [playlistName, setPlaylistName] = useState('My Playlist');
+	const handlePlayListName = ({ target }) => {
+		setPlaylistName(target.value);
+	};
+	// playlist tracks
+	const [playlistTracks, setPlaylistTracks] = useState([]);
 
+	// add to playlist
+	const handleAddTrack = (track) => {
+		if (!playlistTracks.includes(track)) {
+			setPlaylistTracks((currPlaylist) => [track, ...currPlaylist]);
+		}
+	};
+	// remove from playlist
+	const handleRemoveTrack = (track) => {
+		setPlaylistTracks((currPlaylist) => currPlaylist.filter((currTrack) => currTrack !== track));
+	};
+	//searched tracks
+	const [tracks, setTracks] = useState([]);
 
+	//* API
+	//*-----------------------------------------------------------------------
 
-  // playlist
-  const [playlistName, setPlaylistName] = useState("My Playlist");
-  const handlePlayListName = ({ target }) => {
-    setPlaylistName(target.value);
-  };
-  const [playlist, setPlaylist] = useState([]);
-  // add to playlist
-  const handleAddTrack = (track) => {
-    if (!playlist.includes(track)) {
-      setPlaylist(() => [track, ...playlist]);
-    }
-  };
-  // remove from playlist
-  const handleRemoveTrack = (track) => {
-    setPlaylist((currPlaylist) =>
-      currPlaylist.filter((currTrack) => currTrack !== track)
-    );
-  };
-  const handleSavePlaylist = () => {
-    // get tracks uid and send to Spotify
-  };
+	// API call to log user into app
+	const [user, setUser] = useState(null);
+	const handleLogin = () => {
+		spotify.getAuthorize();
+	};
+	useEffect(() => {
+		try {
+			console.log('trying auth from App');
+			spotify.authorize();
+			spotify.user().then((response) => {
+				setUser(response);
+			});
+		} catch {
+			// console.log('not logged in');
+		}
+	}, []);
+	//API call - Search for track
+	const submitSearch = () => {
+		spotify
+			.search(search)
+			.then((response) => {
+				setTracks(response);
+			})
+			.then(() => {
+				setSearch(() => '');
+			});
+	};
+	// API call - Save playlist to users account
+	const handleSavePlaylist = () => {
+		setSearch('');
+		setTracks([]);
+		// get tracks uid and send to Spotify
+		const uris = playlistTracks.map((each) => each.uri);
+		spotify.save(playlistName, uris);
+		setPlaylistTracks([]);
+		setPlaylistName('');
+	};
 
-  // render
-  return (
-    <>
-      <div className="banner">
-        <h1>Jammming</h1>
-        {!token && <button onClick={handleAuth}>aUTH</button>}
-      </div>
-      <div className="container">
-        <Search
-          search={search}
-          handleSearch={handleSearch}
-          submitSearch={submitSearch}
-          tracks={tracks}
-          handleAddTrack={handleAddTrack}
-        />
-        <Playlist
-          playlistName={playlistName}
-          handlePlayListName={handlePlayListName}
-          tracks={playlist}
-          handleRemoveTrack={handleRemoveTrack}
-          handleSavePlaylist={handleSavePlaylist}
-        />
-      </div>
-    </>
-  );
+	//* RENDER
+	//*-----------------------------------------------------------------------
+	return (
+		<div>
+			<Header user={user} handleLogin={handleLogin} />
+			<div className='container'>
+				{user && (
+					<>
+						<Search
+							handleSearch={handleSearch}
+							search={search}
+							submitSearch={submitSearch}
+							tracks={tracks}
+							handleAddTrack={handleAddTrack}
+						/>
+						<Playlist
+							playlistName={playlistName}
+							handlePlayListName={handlePlayListName}
+							playlistTracks={playlistTracks}
+							handleRemoveTrack={handleRemoveTrack}
+							handleSavePlaylist={handleSavePlaylist}
+						/>
+					</>
+				)}
+				{!user && (
+					<div onClick={handleLogin} className='LoginButton'>
+						<h1>Login</h1>
+					</div>
+				)}
+			</div>
+		</div>
+	);
 }
 
 export default App;
