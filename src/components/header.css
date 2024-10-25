@@ -1,31 +1,90 @@
-header {
-	background-color: #1f1f1f;
-	border-radius: 32px;
-	padding: 8px;
-	position: relative;
-	text-align: center;
+.header {
+	height: 56px;
+	margin: 8px;
 }
-header h1 {
-	color: #1abc54;
+.banner {
+	max-height: 64px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+}
+.logo {
+	height: 56px;
+	background-color: #1f1f1f;
+	border-radius: 100px;
+	padding: 0 12px;
+}
+.logo h1 {
+	margin: auto;
+	line-height: 56px;
 }
 .user {
-	position: absolute;
+	/* position: absolute; */
 	right: 8px;
 	top: 8px;
-	height: 40px;
 	padding: 8px;
 	border-radius: 28px;
-	background-color: black;
+	background-color: #1f1f1f;
 	display: flex;
 	gap: 8px;
 	justify-content: center;
 	align-items: center;
+}
+.user p {
+	margin: 0;
 }
 .user img {
 	width: 40px;
 	height: 40px;
 	border-radius: 40px;
 }
-.click {
+.hide {
+	visibility: hidden;
+	height: 56px;
+}
+.trackPreview {
+	max-width: 400px;
+	display: flex;
+	align-items: center;
+	background-color: #1f1f1f;
+	padding: 8px 8px 8px 16px;
+	border-radius: 50px;
+}
+.trackPreview .animation {
+	height: 14px;
+	width: 14px;
+}
+.track-content {
+	display: flex;
+	align-items: center;
+	flex-grow: 1;
+	/* grow */
+}
+.track-image {
+	height: 40px;
+	width: 40px;
+	margin: 0 6px;
+	border-radius: 4px;
+}
+.trackPreview p {
+	margin: 0;
+	height: 20px;
+}
+.trackPreview .track-title {
+	overflow: hidden;
+	font-size: 14px;
+	font-weight: 600;
+}
+.trackPreview .track-artist {
+	font-size: 14px;
+}
+.play-stop {
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	background-color: transparent;
+	border: transparent;
+	font-size: 24px;
 	cursor: pointer;
 }

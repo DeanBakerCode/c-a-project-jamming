@@ -2,7 +2,11 @@ body {
 	margin: 0;
 	padding: 8px;
 	background-color: black;
+	/* background: radial-gradient(#242424, #121212); */
 	min-height: 100svh;
+}
+.app {
+	position: relative;
 }
 .container {
 	padding: 50px 5vw;
@@ -11,15 +15,71 @@ body {
 	justify-content: center;
 	column-gap: 5vw;
 }
-.LoginButton {
-	background-color: #1abc54;
-	color: black;
+
+.login {
+	background-color: #00000010;
+	padding: 60px;
+	border-radius: 20px;
+	text-align: center;
+}
+.login h1,
+.saved-popup-card h1 {
+	font-size: 52px;
+	line-height: 20%;
+}
+.login p,
+.saved-popup-card p {
+	font-size: 16px;
+	line-height: 32px;
+	font-weight: 600;
+}
+.login p + p {
+	margin-top: 40px;
+}
+.login Button,
+.saved-popup-card button {
 	height: 50px;
+	width: 240px;
+	margin-top: 20px;
 	padding: 8px 32px;
 	border-radius: 30px;
+
+	background-color: #1ed760;
+
+	color: black;
+	font-size: 16px;
+	font-weight: 700;
+
 	cursor: pointer;
+	border: none;
 }
-.LoginButton h1 {
-	padding: 0;
-	margin: 0;
+.saved-popup {
+	position: absolute;
+
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+
+	background-color: #00000090;
+
+	text-align: center;
+	display: flex;
+	/* display: none; */
+	justify-content: center;
+	align-items: center;
+}
+.saved-popup-card {
+	width: 400px;
+
+	padding: 32px;
+	border-radius: 16px;
+	background-color: #000000;
+	border: 1px solid white;
+}
+.saved-popup-card-playlist {
+	font-size: 18px;
+	font-weight: 800;
 }

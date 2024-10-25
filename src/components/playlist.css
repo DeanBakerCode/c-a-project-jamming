@@ -1,10 +1,15 @@
 .playlist {
-	min-width: 25vw;
+	width: 40vw;
 	background-color: #1f1f1f;
-	border-radius: 30px;
-	padding: 8px;
+	border-radius: 8px;
+	padding: 12px 8px;
 }
-.playlist-name-box {
+.playlist h1 {
+	margin: 8px 16px;
+	padding: 0;
+	font-size: 24px;
+}
+/* .playlist-name-box {
 	padding: 4px;
 	border: 1px solid lime;
 }
@@ -15,4 +20,4 @@
 	margin: 0;
 	margin-top: 10px;
 	gap: 10px;
-}
+} */

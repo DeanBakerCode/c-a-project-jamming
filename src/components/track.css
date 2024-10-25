@@ -1,7 +1,6 @@
 .track-list {
-	/* border: 1px solid purple; */
 	align-items: center;
-	padding: 4px 8px;
+	padding: 8px;
 }
 .track-list ul {
 	list-style-type: none;
@@ -11,23 +10,88 @@
 .track {
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
+	padding: 8px 8px;
+	border: solid 1px transparent;
+	border-radius: 8px;
+}
+.track:hover {
+	background-color: #ffffff10;
+	cursor: grab;
+}
+.track_head {
+	display: flex;
+	align-items: center;
+	padding-right: 16px;
+	position: relative;
+}
+.track_tail {
+	display: flex;
+	align-items: center;
+	position: relative;
+	padding-right: 24px;
+}
+.track div {
+	height: 42px;
 }
 .track img {
-	height: 35px;
-	width: 35px;
-	/* border: 1px solid green; */
-	/* border-radius: 30px; */
+	height: 42px;
+	width: 42px;
+	border-radius: 6px;
 	margin-right: 10px;
+}
+.track:hover .preview {
+	opacity: 50%;
+}
+.track .preview:hover {
+	cursor: pointer;
 }
 .track p {
 	margin: 0;
 	padding: 0;
+	text-wrap: none;
+	max-height: 21px;
+}
+.track .title {
+	font-size: 16px;
+	font-weight: 600;
+	color: white;
+	overflow: hidden;
 }
 .track .artist {
-	font-size: 12px;
-	font-weight: regular;
-	color: gray;
+	font-size: 14px;
+	font-weight: 500;
+	color: #b3b3b3;
+	overflow: hidden;
 }
+.track .duration {
+	font-size: 14px;
+	color: #b3b3b3;
+}
+/* icon to show adding or removing */
 .add-remove {
+	justify-content: center;
+	display: none;
 	margin-left: auto;
+	font-size: 18px;
+}
+.track:hover .add-remove {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	right: 0px;
+}
+img:hover .add-remove {
+	display: none;
+}
+.play-icon {
+	position: absolute;
+	color: white;
+	left: 5px;
+	top: 5px;
+	font-size: 32px;
+	cursor: pointer;
+}
+.no-result {
+	margin-left: 20px;
 }

@@ -1,18 +1,34 @@
 .input-bar {
-	background-color: black;
+	background-color: #ffffff1a;
 	/* outline: 1px solid white; */
-	height: 40px;
-	border-radius: 8px;
+	height: 36px;
+	border-radius: 6px;
 	padding: 4px;
+	margin: 16px;
 	display: flex;
 }
 .input-bar input {
+	padding: 0;
+	padding-left: 8px;
+	margin: 0;
 	width: 100%;
+	color: white;
 	background: transparent;
-	font-size: 1.5rem;
+	font-size: 18px;
+	font-weight: 500;
 	border: none;
 }
 .input-bar input:focus {
-	border: 1px solid transparent;
-	outline: 1px solid transparent;
+	border: transparent;
+	outline: transparent;
+}
+.input-bar .icon {
+	padding: 0 6px;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.pointer {
+	cursor: pointer;
 }
