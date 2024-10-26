@@ -1,8 +1,7 @@
 import { generateRandomString } from './utility';
-let user_id;
 const spotifyAPIurl = 'https://api.spotify.com';
 const client_id = import.meta.env.VITE_CLIENT_ID;
-const redirect_uri = 'http://localhost:5173/';
+const redirect_uri = 'https://project-jammming.netlify.app/';
 
 // token
 
